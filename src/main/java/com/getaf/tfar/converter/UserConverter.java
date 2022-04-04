@@ -27,7 +27,7 @@ public class UserConverter {
 				user.getGrade(), user.getGouvernorat(), user.getAdresse(), user.getTel(), user.getEmail(),
 				user.getPhoto(), user.getPoste(), user.getFax(), user.getLogin(), user.getPassword(), user.getUrl(),
 				user.getOrganisme().getCode(), user.getOrganisme().getNom(), user.getDepartement().getCode(),
-				user.getDepartement().getNom());
+				user.getDepartement().getNom(), user.isEnabled());
 
 		return map;
 	}
@@ -56,7 +56,9 @@ public class UserConverter {
 				userDto.getTel(), userDto.getEmail(), userDto.getPhoto(), userDto.getPoste(), userDto.getFax(),
 				userDto.getLogin(), userDto.getPassword(), userDto.getUrl(),
 				new Organisme(userDto.getCodeOrganisme(), userDto.getNomOrganisme()),
-				new Departement(userDto.getCodeDepartement(), userDto.getNomDepartement()));
+				new Departement(userDto.getCodeDepartement(), userDto.getNomDepartement()),
+				userDto.isEnabled());
+		
 
 		return map;
 	}

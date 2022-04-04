@@ -1,4 +1,9 @@
 package com.getaf.tfar.domain.entity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -90,9 +95,16 @@ public class User {
 	@JoinColumn(name = "code_departement", referencedColumnName = "code")
 	private Departement departement;
 
+	private boolean enabled;
 
 	public User(Long code) {
 		this.code = code;
 	}
-
+	public List<RoleType> getRoleList(){
+	     
+		List<RoleType> list = new ArrayList<>();	
+		List<RoleType> l =  Arrays.asList(RoleType.values());	
+		list.addAll(l);
+		return list;
+    }
 }

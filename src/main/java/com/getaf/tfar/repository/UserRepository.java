@@ -5,5 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.getaf.tfar.domain.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
+User findByLogin(String login);
+   
 
 }

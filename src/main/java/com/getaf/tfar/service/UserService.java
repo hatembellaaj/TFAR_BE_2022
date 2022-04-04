@@ -1,6 +1,9 @@
 package com.getaf.tfar.service;
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.getaf.tfar.converter.UserConverter;
@@ -8,16 +11,23 @@ import com.getaf.tfar.domain.dto.UserDto;
 import com.getaf.tfar.domain.entity.Departement;
 import com.getaf.tfar.domain.entity.Organisme;
 import com.getaf.tfar.domain.entity.User;
+import com.getaf.tfar.domain.entity.VerificationToken;
+import com.getaf.tfar.enumeration.RoleType;
 import com.getaf.tfar.exception.ResourceNotFoundException;
 import com.getaf.tfar.repository.DepartementRepository;
 import com.getaf.tfar.repository.OrganismeRepository;
+import com.getaf.tfar.repository.PasswordResetTokenRepository;
 import com.getaf.tfar.repository.UserRepository;
+import com.getaf.tfar.repository.VerificationTokenrepository;
 @Service
 public class UserService {
 	@Autowired
-	private UserRepository userRepository;
+	private  UserRepository userRepository;
+	@Autowired
+	private PasswordResetTokenRepository passwordResetTokenRepository ;
 
-
+	@Autowired
+	private VerificationTokenrepository verificationTokenRepository ; 
 	@Autowired
 	private UserConverter userConverter;
 
@@ -75,5 +85,36 @@ public class UserService {
 		userRepository.save(user);
 		return user;
 	}*/
+	public void addAdmin(User user) {
+		user.setPassword( new BCryptPasswordEncoder().encode(user.getPassword()));
+		user.setRole(RoleType.Admin);
+		user.setEnabled(true);
+		userRepository.save(user); 
+	}
+	private String generateVerificationToken(User user) {
+		String token = UUID.randomUUID().toString();
+        VerificationToken verificationToken = new VerificationToken();
+        verificationToken.setToken(token);
+        verificationToken.setUser(user);
 
+        verificationTokenRepository.save(verificationToken);
+        return token;
+	}
+
+	
+	private void fetchUserAndEnable(VerificationToken verificationToken) {
+        String username = verificationToken.getUser().getLogin();
+        User user = userRepository.findByLogin(username);
+        user.setEnabled(true);
+        userRepository.save(user);
+    }
+	
+	public void verifyAccount(String token) {
+        VerificationToken verificationToken = verificationTokenRepository.findByToken(token);
+        fetchUserAndEnable(verificationToken);
+    }
+	public void changeUserPassword(User user, String password) {
+	    user.setPassword(new BCryptPasswordEncoder().encode(password));
+	    userRepository.save(user);
+	}
 }

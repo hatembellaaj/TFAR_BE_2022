@@ -17,6 +17,7 @@ import com.getaf.tfar.domain.entity.Departement;
 import com.getaf.tfar.domain.entity.Organisme;
 import com.getaf.tfar.domain.entity.User;
 import com.getaf.tfar.service.UserService;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -85,5 +86,6 @@ public class UserController {
 		userService.delete(id);
 		return existinguser.toString() +  " is deleted";
 	}
-
+	
+	
 }

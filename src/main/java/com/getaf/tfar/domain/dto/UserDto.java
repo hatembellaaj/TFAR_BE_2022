@@ -57,5 +57,7 @@ public class UserDto {
 	private Long codeDepartement;
 
 	private String nomDepartement;
+	private boolean enabled;
+
 
 }
