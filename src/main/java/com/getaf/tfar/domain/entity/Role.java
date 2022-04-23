@@ -14,12 +14,12 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 
-
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -32,9 +32,9 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id_role")
-	private Integer id;
+	private Integer idRole;
 
-	@Enumerated(EnumType.STRING)
+
 	@Column(name="titre",length = 20)
 	private ERole titre;
 	
@@ -45,10 +45,6 @@ public class Role {
 	private Boolean deleted;
 
 
-	public Role() {
 
-	}
-	
-	
-	
+
 }

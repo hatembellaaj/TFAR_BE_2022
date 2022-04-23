@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RoleDto {
-	private Long idRole;
+	private Integer idRole;
 	
 	private ERole titre;
 	
@@ -19,5 +19,4 @@ public class RoleDto {
 	
 	private Boolean deleted;
 	
-	private Long codeUser;
 }

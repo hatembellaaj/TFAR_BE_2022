@@ -11,8 +11,7 @@ import com.getaf.tfar.domain.entity.User;
 public class RoleConverter {
 	public RoleDto entityToDto(Role role) {
 
-		RoleDto map = new RoleDto(role.getIdRole(),role.getTitre(),role.getDescription(),role.getDeleted(),
-				role.getUser().getCode());
+		RoleDto map = new RoleDto(role.getIdRole(),role.getTitre(),role.getDescription(),role.getDeleted());
 
 		return map;
 	}
@@ -25,7 +24,7 @@ public class RoleConverter {
 
 	public Role dtoToEntity(RoleDto roleDto) {
 
-		Role map = new Role(roleDto.getIdRole(),roleDto.getTitre(),roleDto.getDescription(),roleDto.getDeleted(), new User(roleDto.getCodeUser()));
+		Role map = new Role(roleDto.getIdRole(),roleDto.getTitre(),roleDto.getDescription(),roleDto.getDeleted());
 
 		return map;
 	}
