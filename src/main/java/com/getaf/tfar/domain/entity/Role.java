@@ -35,8 +35,8 @@ public class Role {
 	private Integer id;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="name",length = 20)
-	private ERole name;
+	@Column(name="titre",length = 20)
+	private ERole titre;
 	
 	@Column(name="description")
 	private String description;
