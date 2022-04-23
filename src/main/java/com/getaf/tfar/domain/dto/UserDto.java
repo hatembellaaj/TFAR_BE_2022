@@ -1,4 +1,7 @@
 package com.getaf.tfar.domain.dto;
+import java.util.Set;
+
+import com.getaf.tfar.domain.entity.Role;
 import com.getaf.tfar.enumeration.Gouvernorat;
 import com.getaf.tfar.enumeration.RoleType;
 import com.getaf.tfar.enumeration.TypeUser;
@@ -16,7 +19,7 @@ public class UserDto {
 
 	// private String role;
 
-	private RoleType role;
+	private Set<Role> roles;
 
 	// private String type;
 
@@ -27,8 +30,6 @@ public class UserDto {
 	private String prenom;
 
 	private String grade;
-
-	// private String gouvernorat;
 
 	private Gouvernorat gouvernorat;
 
