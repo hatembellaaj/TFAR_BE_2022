@@ -23,7 +23,7 @@ public class UserConverter {
 		 * ), user.getDepartement().getCode());
 		 */
 
-		UserDto map = new UserDto(user.getCode(), user.getRole(), user.getType(), user.getNom(), user.getPrenom(),
+		UserDto map = new UserDto(user.getCode(), user.getRoles(), user.getType(), user.getNom(), user.getPrenom(),
 				user.getGrade(), user.getGouvernorat(), user.getAdresse(), user.getTel(), user.getEmail(),
 				user.getPhoto(), user.getPoste(), user.getFax(), user.getLogin(), user.getPassword(), user.getUrl(),
 				user.getOrganisme().getCode(), user.getOrganisme().getNom(), user.getDepartement().getCode(),
@@ -51,7 +51,7 @@ public class UserConverter {
 		 * Departement(userDto.getCodeDepartement()));
 		 */
 
-		User map = new User(userDto.getCode(), userDto.getRole(), userDto.getType(), userDto.getNom(),
+		User map = new User(userDto.getCode(), userDto.getRoles(), userDto.getType(), userDto.getNom(),
 				userDto.getPrenom(), userDto.getGrade(), userDto.getGouvernorat(), userDto.getAdresse(),
 				userDto.getTel(), userDto.getEmail(), userDto.getPhoto(), userDto.getPoste(), userDto.getFax(),
 				userDto.getLogin(), userDto.getPassword(), userDto.getUrl(),
