@@ -36,6 +36,7 @@ public class Role {
 
 
 	@Column(name="titre",length = 20)
+	@Enumerated(EnumType.STRING)
 	private ERole titre;
 	
 	@Column(name="description")
@@ -48,3 +49,4 @@ public class Role {
 
 
 }
+

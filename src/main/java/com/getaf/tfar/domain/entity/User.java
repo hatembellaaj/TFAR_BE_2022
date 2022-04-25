@@ -111,11 +111,11 @@ public class User {
 	private String url;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "code_organisme", referencedColumnName = "code")
+	@JoinColumn(name = "code_organisme", referencedColumnName = "code", nullable=true)
 	private Organisme organisme;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "code_departement", referencedColumnName = "code")
+	@JoinColumn(name = "code_departement", referencedColumnName = "code", nullable=true)
 	private Departement departement;
 
 
