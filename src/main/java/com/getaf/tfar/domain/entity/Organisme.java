@@ -36,23 +36,23 @@ public class Organisme {
 	@Column(name = "nom")
 	private String nom;
 
-	@NotNull
+
 	@Column(name = "adresse")
 	private String adresse;
 
-	@NotNull
+
 	@Column(name = "tel")
 	private String tel;
 
-	@NotNull
+
 	@Column(name = "contact")
 	private String contact;
 
-	@NotNull
+
 	@Column(name = "email")
 	private String email;
 	
-	@NotNull
+
 	@Column(name = "type")
 	@Enumerated(EnumType.STRING)
 	private OrganismeType type;

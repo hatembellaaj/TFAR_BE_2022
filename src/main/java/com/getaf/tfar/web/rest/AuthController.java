@@ -25,6 +25,8 @@ import com.getaf.tfar.domain.entity.ERole;
 import com.getaf.tfar.domain.entity.Role;
 import com.getaf.tfar.domain.entity.User;
 import com.getaf.tfar.repository.RoleRepository;
+import com.getaf.tfar.repository.DepartementRepository;
+import com.getaf.tfar.repository.OrganismeRepository;
 import com.getaf.tfar.security.jwt.JwtUtils;
 import com.getaf.tfar.request.LoginRequest;
 import com.getaf.tfar.request.SignupRequest;
@@ -45,6 +47,13 @@ public class AuthController {
 	@Autowired
 	RoleRepository roleRepository;
 
+	@Autowired
+	DepartementRepository departementRepository;	
+	
+	@Autowired
+	OrganismeRepository organismeRepository;	
+	
+	
 	@Autowired
 	PasswordEncoder encoder;
 
@@ -122,6 +131,9 @@ public class AuthController {
 		}
 
 		user.setRoles(roles);
+		user.setDepartement(departementRepository.getById((long) 1));
+		user.setOrganisme(organismeRepository.getById((long)1));
+		
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
