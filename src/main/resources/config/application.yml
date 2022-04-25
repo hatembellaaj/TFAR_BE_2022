@@ -212,3 +212,9 @@ jhipster:
 # ===================================================================
 
 # application:
+
+# App Properties
+tfar:
+  app:
+    jwtSecret: bezKoderSecretKey
+    jwtExpirationMs: 86400000

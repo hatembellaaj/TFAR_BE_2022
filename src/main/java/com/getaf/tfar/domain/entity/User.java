@@ -33,8 +33,6 @@ import lombok.ToString;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-
 @AllArgsConstructor
 @Getter
 @Setter
@@ -58,7 +56,7 @@ public class User {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(	name = "user_roles", 
 				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id"))
+				inverseJoinColumns = @JoinColumn(name = "id_role"))
 	private Set<Role> roles = new HashSet<>();
 	
 	

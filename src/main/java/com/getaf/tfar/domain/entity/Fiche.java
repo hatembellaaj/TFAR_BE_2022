@@ -833,7 +833,6 @@ public class Fiche {
 	@Column(name = "nombre_tache_hypo")
 	private Long nombreTacheHypo;*/
 
-	
 
 	public Fiche(Long idFiche) {
 		this.idFiche = idFiche;

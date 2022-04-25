@@ -7,8 +7,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bezkoder.springjwt.models.User;
-import com.bezkoder.springjwt.repository.UserRepository;
+import com.getaf.tfar.domain.entity.User;
+import com.getaf.tfar.repository.UserRepository;
+
+
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -18,7 +20,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username)
+		User user = userRepository.findByLogin(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
 		return UserDetailsImpl.build(user);
