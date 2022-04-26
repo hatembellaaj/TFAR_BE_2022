@@ -216,5 +216,5 @@ jhipster:
 # App Properties
 tfar:
   app:
-    jwtSecret: bezKoderSecretKey
+    jwtSecret: MTNlODEwMzE1NWUwZGFhYWFlY2M1MjFjYmRmNjI4N2Q1ZThhZmFmMjJmY2NjNDRhZDAzODI4OGVjMjhkOGIyMGM2MDljN2ZiZTE4NzdhYTJkZTExMDRkZmE0ZjM2N2UyNDRiYmVmODA1MzRmOWYxOWU1YTIxYzhkMzUxODNjYTg=
     jwtExpirationMs: 86400000
