@@ -109,12 +109,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/info").permitAll()
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-	/*		.anyRequest().authenticated();
+			.anyRequest().authenticated()
+			.and()
+            .apply(securityConfigurerAdapter());
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-*/
-        .and()
-            .apply(securityConfigurerAdapter());
+
+        /*.and()
+            .apply(securityConfigurerAdapter());*/
         // @formatter:on
     }
 
