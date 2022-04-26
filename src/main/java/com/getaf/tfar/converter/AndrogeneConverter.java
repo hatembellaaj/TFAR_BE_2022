@@ -23,7 +23,7 @@ public class AndrogeneConverter {
 
 	public Androgene dtoToEntity(AndrogeneDto androgeneDto) {
 		Androgene map = new Androgene(androgeneDto.getId(), androgeneDto.getMois(), androgeneDto.getReponse(),
-				androgeneDto.getFiche());
+				new Fiche(androgeneDto.getIdFiche()));
 
 		return map;
 	}
