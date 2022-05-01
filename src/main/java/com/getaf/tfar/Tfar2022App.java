@@ -1,6 +1,8 @@
 package com.getaf.tfar;
 
 import com.getaf.tfar.config.ApplicationProperties;
+import com.getaf.tfar.config.CorsConfig;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -14,13 +16,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.env.Environment;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
-public class Tfar2022App {
+//@ComponentScan(basePackageClasses= CorsConfig.class)
+public class Tfar2022App implements WebMvcConfigurer{
 
     private static final Logger log = LoggerFactory.getLogger(Tfar2022App.class);
 
@@ -30,6 +37,9 @@ public class Tfar2022App {
         this.env = env;
     }
 
+
+    
+    
     /**
      * Initializes TFAR2022.
      * <p>

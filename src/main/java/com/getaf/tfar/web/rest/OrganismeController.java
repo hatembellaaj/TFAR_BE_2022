@@ -2,6 +2,7 @@ package com.getaf.tfar.web.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import com.getaf.tfar.converter.OrganismeConverter;
 import com.getaf.tfar.domain.dto.OrganismeDto;
 import com.getaf.tfar.domain.entity.Organisme;
 import com.getaf.tfar.service.OrganismeService;
+
 
 @RestController
 @RequestMapping("/api/organismes")
