@@ -41,7 +41,7 @@ public class WebConfigurer implements ServletContextInitializer {
 
         log.info("Web application fully configured");
     }
-
+/*
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -49,7 +49,7 @@ public class WebConfigurer implements ServletContextInitializer {
         if (!CollectionUtils.isEmpty(config.getAllowedOrigins()) || !CollectionUtils.isEmpty(config.getAllowedOriginPatterns())) {
             log.debug("Registering CORS filter");
             //config.addAllowedOrigin("http://localhost:8083,http://localhost:4200,http://localhost:8761");
-            config.addAllowedOrigin("*");
+            //config.addAllowedOrigin("*");
             source.registerCorsConfiguration("/api/**", config);
             source.registerCorsConfiguration("/management/**", config);
             source.registerCorsConfiguration("/v2/api-docs", config);
@@ -59,5 +59,16 @@ public class WebConfigurer implements ServletContextInitializer {
         }
         return new CorsFilter(source);
     }
+    */
     
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = jHipsterProperties.getCors();
+        if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
+            log.debug("Registering CORS filter");
+            source.registerCorsConfiguration("/api/**", config);
+            source.registerCorsConfiguration("/management/**", config);
+        }
+        return new CorsFilter(source);
+    }
 }

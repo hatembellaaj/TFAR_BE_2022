@@ -4,6 +4,8 @@ import com.getaf.tfar.security.*;
 import com.getaf.tfar.security.jwt.*;
 import com.getaf.tfar.service.UserDetailsServiceImpl;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -60,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+	/*
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -68,10 +70,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    config.addAllowedHeader("*");
 	    config.addAllowedMethod("*");
 	    //config.addAllowedOrigin("http://localhost:8083,http://localhost:4200,http://localhost:8761");
-	    config.addAllowedOrigin("*");
+	    //config.addAllowedOrigin("*");
 	    source.registerCorsConfiguration("/**", config);
 	    return source;
 	}	
+	*/
+	
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+	    CorsConfiguration configuration = new CorsConfiguration();
+	    configuration.setAllowedOrigins(Arrays.asList("*"));
+	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", 
+	    "DELETE", "OPTIONS"));
+	    configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", 
+	    "x-auth-token"));
+	    configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
+	    UrlBasedCorsConfigurationSource source = new 
+	    UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);
+
+	    return source;
+	}	
+	
 	
 	
 	//Before JWT Config
@@ -97,39 +117,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .csrf()
             .disable()
-            .exceptionHandling()
-                .authenticationEntryPoint(problemSupport)
-                .accessDeniedHandler(problemSupport)
-        .and()
-            .headers()
-            .contentSecurityPolicy(jHipsterProperties.getSecurity().getContentSecurityPolicy())
-        .and()
-            .frameOptions()
-            .deny()
-        .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-            .authorizeRequests()
-           // .antMatchers("/api").permitAll()
-            
-            .antMatchers("/api/authenticate").permitAll()
-            .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/organismes/findAll").hasAuthority(AuthoritiesConstants.ADMIN)
-            .antMatchers("/api/**").permitAll()
-            .antMatchers("/management/health").permitAll()
-            .antMatchers("/management/health/**").permitAll()
-            .antMatchers("/management/info").permitAll()
-            .antMatchers("/management/prometheus").permitAll()
-            .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
-			.anyRequest().authenticated()
-			.and()
-            .apply(securityConfigurerAdapter());
 
+
+			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
+			.antMatchers("/api/test/**").permitAll()
+			.antMatchers("/api/**").permitAll()
+			.anyRequest().authenticated();
+
+
+	//	http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         
-         //   http.apply(securityConfigurerAdapter());
+//            http.apply(securityConfigurerAdapter());
         // @formatter:on
     }
 

@@ -182,7 +182,8 @@ jhipster:
     allowed-origins: "*"
     allowed-methods: "*"
     allowed-headers: "*"
-    exposed-headers: "Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
+    exposed-headers: "*"
+    #exposed-headers: "Authorization,Link,X-Total-Count,X-${jhipster.clientApp.name}-alert,X-${jhipster.clientApp.name}-error,X-${jhipster.clientApp.name}-params"
     allow-credentials: false
     max-age: 1800
   mail:

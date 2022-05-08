@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.getaf.tfar.domain.entity.Organisme;
 import com.getaf.tfar.repository.OrganismeRepository;
@@ -12,7 +13,7 @@ public class OrganismeService {
 	@Autowired
 	private OrganismeRepository organismeRepository;
 	
-	
+	@CrossOrigin
 	public List<Organisme> listAll() {
 		return organismeRepository.findAll();	
 	}
