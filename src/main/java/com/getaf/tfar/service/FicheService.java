@@ -81,6 +81,9 @@ public class FicheService {
 		}
 		FicheDto ficheDto = fiche2Converter.Fiche2DtoToDFicheDto(fiche2Dto);
 		Fiche fiche = ficheConverter.toEntity(ficheDto);
+		
+		System.out.println("form to save  : " +  fiche.toString());
+		
 		Fiche savedFiche = ficheRepository.save(fiche);
 
 		System.out.println(savedFiche + "    ffffffffffffffff");
