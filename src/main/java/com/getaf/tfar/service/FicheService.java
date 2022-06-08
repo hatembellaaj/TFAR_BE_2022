@@ -73,7 +73,7 @@ public class FicheService {
 							+ "nom patient or prenom patient  are not found.");
 		}
 
-		Long codeUser = fiche2Dto.getCodeUser();
+		Long codeUser = fiche2Dto.getCode_user();
 		List<User> users = userRepository.findAll();
 		User x = users.stream().filter(h -> h.getCode().equals(codeUser)).findAny().orElse(null);
 		if (x == null) {
@@ -148,7 +148,7 @@ public class FicheService {
 							+ "nom patient or prenom patient  are not found.");
 		}
 
-		Long codeUser = fiche2Dto.getCodeUser();
+		Long codeUser = fiche2Dto.getCode_user();
 		List<User> users = userRepository.findAll();
 		User x = users.stream().filter(h -> h.getCode().equals(codeUser)).findAny().orElse(null);
 		if (x == null) {

@@ -409,7 +409,7 @@ public class Fiche2Dto {
 	
 	private Double survieGlobale;
 	
-	private Long codeUser;
+	private Long code_user;
 	
 	
 	private PatientDto patient;

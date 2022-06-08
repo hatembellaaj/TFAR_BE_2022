@@ -728,7 +728,7 @@ public class Fiche {
 	private Double survieGlobale;
 	
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "code", referencedColumnName = "code")
+	@JoinColumn(name = "code_user", referencedColumnName = "code")
 	private User user;
 	
 /*
