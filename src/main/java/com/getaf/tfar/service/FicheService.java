@@ -77,10 +77,11 @@ public class FicheService {
 		List<User> users = userRepository.findAll();
 		User x = users.stream().filter(h -> h.getCode().equals(codeUser)).findAny().orElse(null);
 		if (x == null) {
-			throw new ResourceNotFoundException("The user is not found.");
+			throw new ResourceNotFoundException("The user having code "+ codeUser +"is not found.");
 		}
 		FicheDto ficheDto = fiche2Converter.Fiche2DtoToDFicheDto(fiche2Dto);
 		Fiche fiche = ficheConverter.toEntity(ficheDto);
+		fiche.setUser(x);
 		
 		System.out.println("form to save  : " +  fiche.toString());
 		

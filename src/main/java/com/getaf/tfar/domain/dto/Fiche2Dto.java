@@ -412,6 +412,8 @@ public class Fiche2Dto {
 	private Long code_user;
 	
 	
+	
+	
 	private PatientDto patient;
 	
 	private List<AndrogeneDto> androgene;

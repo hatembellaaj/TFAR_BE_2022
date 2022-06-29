@@ -7,9 +7,11 @@ import com.getaf.tfar.domain.dto.CytogenetiqueDto;
 import com.getaf.tfar.domain.dto.Fiche2Dto;
 import com.getaf.tfar.domain.dto.FicheDto;
 import com.getaf.tfar.domain.dto.PatientDto;
+import com.getaf.tfar.domain.dto.UserDto;
 import com.getaf.tfar.repository.AndrogeneRepository;
 import com.getaf.tfar.repository.CytogenetiqueRepository;
 import com.getaf.tfar.repository.PatientRepository;
+import com.getaf.tfar.repository.UserRepository;
 
 import java.util.List;
 
@@ -17,6 +19,12 @@ import org.modelmapper.ModelMapper;
 
 @Component
 public class Fiche2Converter {
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private UserConverter userConverter;
+	
 	@Autowired
 	private PatientRepository patientRepository;
 	
@@ -45,12 +53,14 @@ public class Fiche2Converter {
 	
 	public Fiche2Dto FicheDtoToDFiche2Dto(FicheDto ficheDto) {
 		
+		
 		Long idOfFiche=ficheDto.getIdFiche();
 		PatientDto patientDto=patientConverter.entityToDto(patientRepository.findPatientByIdFiche(idOfFiche));
 		List<AndrogeneDto> androgeneDto=androgeneConverter.entityToDto(androgeneRepository.findAndrogeneByIdFiche(idOfFiche));
 		List<CytogenetiqueDto> cytogenetiqueDto=cytogenetiqueConverter.entityToDto(cytogenetiqueRepository.findCytogenetiqueByIdFiche(idOfFiche));
 		ModelMapper mapper = new ModelMapper();
 		Fiche2Dto map = mapper.map(ficheDto, Fiche2Dto.class);
+		
 		map.setPatient(patientDto);
 		map.setAndrogene(androgeneDto);
 		map.setCytogenetique(cytogenetiqueDto);
