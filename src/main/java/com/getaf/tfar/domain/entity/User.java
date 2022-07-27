@@ -112,6 +112,7 @@ public class User {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "code_organisme", referencedColumnName = "code", columnDefinition="Long NOT NULL")
+
 	private Organisme organisme;
 
 	@ManyToOne(optional = false)

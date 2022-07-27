@@ -11,6 +11,6 @@ import com.getaf.tfar.domain.entity.ERole;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Long>{
-	Optional<Role> findByTitre(ERole name);
+	Optional<Role> findByTitre(ERole titre);
 
 }

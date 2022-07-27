@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +27,13 @@ import com.getaf.tfar.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private UserConverter userConverter;
 
 	// get all users
 	@GetMapping("/findAll")
+ 	@PreAuthorize("hasRole('ADMIN')")
+
 	public List<UserDto> getAllUsers() {
 		List<User> findAll = userService.listAll();
 		return userConverter.entityToDto(findAll);
@@ -90,4 +92,11 @@ public class UserController {
 		return existinguser.toString() +  " is deleted";
 	}
 
+/*	//update user_role
+	@PutMapping("/updaterole/{iduser}")
+	public String updateRole(@RequestBody Role role ,@PathVariable("iduser") Long iduser) {
+		User user = userService.get(iduser);
+	    List<Role> roles =rolerepo.findAll();		
+		return "yyyyyyyyyyyyyyyyyyyyyyyyyy";
+	}*/
 }

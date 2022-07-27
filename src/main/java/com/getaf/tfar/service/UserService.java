@@ -6,10 +6,12 @@ import com.getaf.tfar.converter.UserConverter;
 import com.getaf.tfar.domain.dto.UserDto;
 import com.getaf.tfar.domain.entity.Departement;
 import com.getaf.tfar.domain.entity.Organisme;
+import com.getaf.tfar.domain.entity.Role;
 import com.getaf.tfar.domain.entity.User;
 import com.getaf.tfar.exception.ResourceNotFoundException;
 import com.getaf.tfar.repository.DepartementRepository;
 import com.getaf.tfar.repository.OrganismeRepository;
+import com.getaf.tfar.repository.RoleRepository;
 import com.getaf.tfar.repository.UserRepository;
 
 
@@ -28,6 +30,9 @@ public class UserService {
 	@Autowired
 	private OrganismeRepository orgRepository;
 
+	@Autowired
+	private RoleRepository rolerepo;
+
 	public List<User> listAll() {
 		return userRepository.findAll();	
 	}
@@ -38,7 +43,9 @@ public class UserService {
 		if (x == null) {
 			throw new ResourceNotFoundException("The organisme is not found.");
 		}
-
+	    List<Role> roles =rolerepo.findAll();		
+	    for(Role role: roles) 
+	        System.out.println("Roles"+ role.getTitre());
 		Long codeDep = userDto.getCodeDepartement();
 		List<Departement> departements = depRepository.findAll();
 		Departement y = departements.stream().filter(h -> h.getCode().equals(codeDep)).findAny().orElse(null);
